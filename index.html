@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reserva de Espaço - IG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Pico CSS (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at top, #f5f7ff 0, #e3e7ff 40%, #d8dde9 100%);
+        padding: 1rem;
+      }
+
+      main {
+        width: 100%;
+      }
+
+      .form-card {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+        background: white;
+      }
+
+      @media (min-width: 768px) {
+        .form-card {
+          padding: 2.5rem 2rem;
+          margin: 2rem auto;
+        }
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1rem 1.5rem;
+        }
+      }
+
+      /* Logos */
+      .header-logos {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+      }
+
+      .header-logos img {
+        max-height: 60px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      @media (min-width: 768px) {
+        .header-logos img {
+          max-height: 80px;
+        }
+      }
+
+      .form-header {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-header h1 {
+        margin-bottom: 0.3rem;
+        font-size: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .form-header h1 {
+          font-size: 2rem;
+        }
+      }
+
+      .form-header p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.85;
+      }
+
+      @media (min-width: 768px) {
+        .form-header p {
+          font-size: 0.95rem;
+        }
+      }
+
+      .required {
+        color: #e11d48;
+        font-weight: 600;
+        margin-left: 0.1rem;
+      }
+
+      .hint {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-top: -0.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-note {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-top: 1.5rem;
+        text-align: right;
+      }
+
+      /* Etapas do formulário */
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+      }
+
+      /* Indicador de progresso */
+      .progress-indicator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+        gap: 0.5rem;
+      }
+
+      .progress-step {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: #64748b;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .progress-step.active {
+        background: #3b82f6;
+        color: white;
+      }
+
+      .progress-step.completed {
+        background: #10b981;
+        color: white;
+      }
+
+      .progress-line {
+        width: 60px;
+        height: 2px;
+        background: #e2e8f0;
+        transition: all 0.3s ease;
+      }
+
+      .progress-line.completed {
+        background: #10b981;
+      }
+
+      @media (min-width: 768px) {
+        .progress-line {
+          width: 100px;
+        }
+      }
+
+      /* Botões de navegação */
+      .form-navigation {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-direction: column;
+      }
+
+      @media (min-width: 768px) {
+        .form-navigation {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+      }
+
+      @media (min-width: 768px) {
+        .btn-group {
+          flex-direction: row;
+        }
+      }
+
+      button {
+        margin: 0 !important;
+      }
+
+      /* Logo footer */
+      .footer-logo {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .footer-logo img {
+        max-height: 70px;
+        width: auto;
+        object-fit: contain;
+        opacity: 0.8;
+      }
+
+      /* Loading spinner */
+      .loading {
+        display: none;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .loading.active {
+        display: block;
+      }
+
+      .spinner {
+        border: 3px solid #f3f4f6;
+        border-top: 3px solid #3b82f6;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article class="form-card">
+        <!-- Logos no topo -->
+        <div class="header-logos">
+          <img src="logo-ig.png" alt="Logo IG" onerror="this.style.display='none'">
+          <img src="logo-ig.png" alt="Logo IG" onerror="this.style.display='none'" style="opacity: 0;">
+        </div>
+
+        <header class="form-header">
+          <h1>Reserva de Espaço no IG</h1>
+          <p>
+            Preencha o formulário abaixo para solicitar a reserva de espaço.
+            Campos marcados com <span class="required">*</span> são obrigatórios.
+          </p>
+        </header>
+
+        <!-- Indicador de progresso -->
+        <div class="progress-indicator">
+          <div class="progress-step active" data-step="1">1</div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="2">2</div>
+        </div>
+
+        <form id="reservaForm">
+          <!-- ETAPA 1: Informações Básicas -->
+          <div class="form-step active" data-step="1">
+            <!-- E-mail -->
+            <label for="email">
+              E-mail <span class="required">*</span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu.email@exemplo.com"
+                required
+              />
+            </label>
+            <p class="hint">Este formulário requer um e-mail válido para contato.</p>
+
+            <!-- Datas (grid) -->
+            <div class="form-grid">
+              <!-- Data Início -->
+              <label for="data_inicio">
+                Data Início <span class="required">*</span>
+                <input
+                  type="date"
+                  id="data_inicio"
+                  name="data_inicio"
+                  required
+                />
+              </label>
+
+              <!-- Data Término -->
+              <label for="data_termino">
+                Data Término <span class="required">*</span>
+                <input
+                  type="date"
+                  id="data_termino"
+                  name="data_termino"
+                  required
+                />
+              </label>
+            </div>
+
+            <!-- Nome do evento -->
+            <label for="nome_evento">
+              Nome do evento <span class="required">*</span>
+              <input
+                type="text"
+                id="nome_evento"
+                name="nome_evento"
+                placeholder="Ex.: Semana de Integração do IG"
+                required
+              />
+            </label>
+
+            <!-- Navegação Etapa 1 -->
+            <div class="form-navigation">
+              <div class="btn-group">
+                <button type="button" class="secondary" onclick="limparFormulario()">
+                  Limpar campos
+                </button>
+              </div>
+              <div class="btn-group">
+                <button type="button" onclick="proximaEtapa()">
+                  Avançar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ETAPA 2: Detalhes do Evento -->
+          <div class="form-step" data-step="2">
+            <!-- Local -->
+            <label for="local">
+              Local <span class="required">*</span>
+              <select id="local" name="local" required>
+                <option value="" selected disabled>
+                  Selecione o local do evento
+                </option>
+                <option value="Auditório Milton Santos">
+                  Auditório Milton Santos
+                </option>
+                <option value="Saguão 01 (ao lado do Auditório)">
+                  Saguão 01 (ao lado do Auditório)
+                </option>
+                <option value="Saguão 02 (acesso pelo centro acadêmico)">
+                  Saguão 02 (acesso pelo centro acadêmico)
+                </option>
+              </select>
+            </label>
+
+            <!-- Breve descrição do evento -->
+            <label for="descricao">
+              Breve descrição do evento <span class="required">*</span>
+              <textarea
+                id="descricao"
+                name="descricao"
+                rows="5"
+                placeholder="Descreva o objetivo do evento, público-alvo, atividades previstas e, se possível, inclua o link do evento."
+                required
+              ></textarea>
+            </label>
+
+            <p class="hint">
+              Se possível, inclua o link do evento (site, rede social, formulário de inscrição etc.).
+            </p>
+
+            <!-- Navegação Etapa 2 -->
+            <div class="form-navigation">
+              <div class="btn-group">
+                <button type="button" class="secondary" onclick="etapaAnterior()">
+                  Voltar
+                </button>
+              </div>
+              <div class="btn-group">
+                <button type="submit">
+                  Enviar solicitação
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading -->
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Enviando sua solicitação...</p>
+          </div>
+
+          <p class="footer-note">
+            Formulário de reserva de espaço – IG
+          </p>
+        </form>
+
+        <!-- Logo da Unicamp no rodapé -->
+        <div class="footer-logo">
+          <img src="logo-unicamp.png" alt="Logo Unicamp" onerror="this.style.display='none'">
+        </div>
+      </article>
+    </main>
+
+    <script>
+      let etapaAtual = 1;
+
+      // Navegação entre etapas
+      function proximaEtapa() {
+        if (!validarEtapa(etapaAtual)) {
+          return;
+        }
+
+        etapaAtual = 2;
+        atualizarEtapa();
+      }
+
+      function etapaAnterior() {
+        etapaAtual = 1;
+        atualizarEtapa();
+      }
+
+      function atualizarEtapa() {
+        // Atualizar visibilidade das etapas
+        document.querySelectorAll('.form-step').forEach(step => {
+          step.classList.remove('active');
+        });
+        document.querySelector(`.form-step[data-step="${etapaAtual}"]`).classList.add('active');
+
+        // Atualizar indicador de progresso
+        document.querySelectorAll('.progress-step').forEach(step => {
+          const stepNumber = parseInt(step.dataset.step);
+          step.classList.remove('active', 'completed');
+
+          if (stepNumber < etapaAtual) {
+            step.classList.add('completed');
+          } else if (stepNumber === etapaAtual) {
+            step.classList.add('active');
+          }
+        });
+
+        document.querySelectorAll('.progress-line').forEach((line, index) => {
+          if (index < etapaAtual - 1) {
+            line.classList.add('completed');
+          } else {
+            line.classList.remove('completed');
+          }
+        });
+
+        // Scroll para o topo
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function validarEtapa(etapa) {
+        const stepElement = document.querySelector(`.form-step[data-step="${etapa}"]`);
+        const inputs = stepElement.querySelectorAll('input[required], select[required], textarea[required]');
+
+        let valido = true;
+        inputs.forEach(input => {
+          if (!input.checkValidity()) {
+            input.reportValidity();
+            valido = false;
+            return false;
+          }
+        });
+
+        return valido;
+      }
+
+      function limparFormulario() {
+        if (confirm('Tem certeza que deseja limpar todos os campos?')) {
+          document.getElementById('reservaForm').reset();
+          etapaAtual = 1;
+          atualizarEtapa();
+        }
+      }
+
+      // Envio do formulário
+      document.getElementById('reservaForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        if (!validarEtapa(2)) {
+          return;
+        }
+
+        // Mostrar loading
+        document.querySelectorAll('.form-step').forEach(step => step.style.display = 'none');
+        document.querySelector('.loading').classList.add('active');
+
+        // Coletar dados do formulário
+        const formData = new FormData(this);
+        const dados = Object.fromEntries(formData.entries());
+
+        try {
+          // Enviar para Google Sheets
+          const response = await fetch('https://script.google.com/macros/s/AKfycby2xJr-XpvXQ9qhxw25H4TkEDf4zIVsfa2Ws2mW6X0oyz7yKk74AxaaxmHkgp2AKA47zw/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dados)
+          });
+
+          // Ocultar loading
+          document.querySelector('.loading').classList.remove('active');
+
+          // Mostrar mensagem de sucesso
+          alert('✅ Formulário enviado com sucesso!\n\nSua solicitação de reserva foi recebida e será analisada em breve.\n\nObrigado!');
+
+          // Limpar e resetar formulário
+          this.reset();
+          etapaAtual = 1;
+          atualizarEtapa();
+          document.querySelector('.form-step[data-step="1"]').style.display = 'block';
+
+        } catch (error) {
+          // Ocultar loading
+          document.querySelector('.loading').classList.remove('active');
+          document.querySelector('.form-step[data-step="2"]').style.display = 'block';
+
+          // Mostrar mensagem de erro
+          alert('❌ Erro ao enviar formulário.\n\nPor favor, tente novamente mais tarde ou entre em contato diretamente.');
+          console.error('Erro:', error);
+        }
+      });
+    </script>
+  </body>
+</html>

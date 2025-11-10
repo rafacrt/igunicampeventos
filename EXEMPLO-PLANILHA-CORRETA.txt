@@ -1,0 +1,43 @@
+╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                          EXEMPLO DE COMO A PLANILHA DEVE FICAR                                                        ║
+╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+LINHA 1 (CABEÇALHOS):
+┌─────────────────────┬───────────────────────┬──────────────┬───────────────┬──────────────────┬──────────────────────────────────┬─────────────────────────────────┐
+│   A: Timestamp      │   B: Email            │ C: Data      │ D: Data       │ E: Nome do       │ F: Local                         │ G: Descrição                    │
+│                     │                       │    Início    │    Término    │    Evento        │                                  │                                 │
+├─────────────────────┼───────────────────────┼──────────────┼───────────────┼──────────────────┼──────────────────────────────────┼─────────────────────────────────┤
+│ 09/11/2025 14:30:15 │ joao@exemplo.com      │ 2025-11-15   │ 2025-11-20    │ Semana do IG     │ Auditório Milton Santos          │ Semana de integração com        │
+│                     │                       │              │               │                  │                                  │ palestras e workshops           │
+├─────────────────────┼───────────────────────┼──────────────┼───────────────┼──────────────────┼──────────────────────────────────┼─────────────────────────────────┤
+│ 09/11/2025 16:45:22 │ maria@exemplo.com     │ 2025-12-01   │ 2025-12-01    │ Colóquio Geo     │ Saguão 01 (ao lado do Auditório) │ Apresentação de trabalhos       │
+│                     │                       │              │               │                  │                                  │ de pesquisa                     │
+└─────────────────────┴───────────────────────┴──────────────┴───────────────┴──────────────────┴──────────────────────────────────┴─────────────────────────────────┘
+
+
+⚠️ IMPORTANTE - OS NOMES EXATOS DAS COLUNAS (copie e cole se necessário):
+
+Timestamp
+Email
+Data Início
+Data Término
+Nome do Evento
+Local
+Descrição
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+VERIFICAÇÃO RÁPIDA:
+
+✅ A coluna A deve ter o nome "Timestamp" (sem acento, primeira letra maiúscula)
+✅ A coluna B deve ter o nome "Email" (sem hífen, primeira letra maiúscula)
+✅ A coluna C deve ter o nome "Data Início" (COM acento no í)
+✅ A coluna D deve ter o nome "Data Término" (COM acento no é)
+✅ A coluna E deve ter o nome "Nome do Evento" (primeira letra de cada palavra maiúscula)
+✅ A coluna F deve ter o nome "Local" (sem acento, primeira letra maiúscula)
+✅ A coluna G deve ter o nome "Descrição" (COM cedilha no ç)
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+DICA: Se você copiar e colar os nomes acima diretamente nas células da planilha, vai funcionar perfeitamente!
