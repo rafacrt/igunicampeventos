@@ -1,0 +1,121 @@
+╔═══════════════════════════════════════════════════════════════════════════════════════════════╗
+║                        CABEÇALHOS DA PLANILHA - FORMULÁRIO ATUALIZADO (26 COLUNAS)           ║
+╚═══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+COPIE E COLE OS NOMES ABAIXO NA PRIMEIRA LINHA DA SUA PLANILHA DO GOOGLE SHEETS:
+
+┌────────┬──────────────────────────────────────────────┐
+│ Coluna │ Nome do Cabeçalho                            │
+├────────┼──────────────────────────────────────────────┤
+│   A    │ Timestamp                                    │
+│   B    │ Email                                        │
+│   C    │ Data Início                                  │
+│   D    │ Data Término                                 │
+│   E    │ Hora Evento Início                           │
+│   F    │ Hora Evento Término                          │
+│   G    │ Hora Montagem Início                         │
+│   H    │ Hora Montagem Término                        │
+│   I    │ Nome do Evento                               │
+│   J    │ Local                                        │
+│   K    │ Público Estimado                             │
+│   L    │ Descrição                                    │
+│   M    │ Entidade Promotora                           │
+│   N    │ Coordenador Nome                             │
+│   O    │ Coordenador Email                            │
+│   P    │ Coordenador Telefone                         │
+│   Q    │ Contato Nome                                 │
+│   R    │ Contato Email                                │
+│   S    │ Contato Telefone                             │
+│   T    │ Haverão Expositores?                         │
+│   U    │ Evento Possui Patrocínio?                    │
+│   V    │ Evento Possui Inscrição Paga?                │
+│   W    │ Serviços Multimídia                          │
+│   X    │ Prestadores de Serviço                       │
+│   Y    │ Observações                                  │
+│   Z    │ Declaração de Responsabilidade               │
+└────────┴──────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+COPIE OS NOMES ABAIXO (SEM AS BARRAS VERTICAIS | )
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+
+Timestamp
+Email
+Data Início
+Data Término
+Hora Evento Início
+Hora Evento Término
+Hora Montagem Início
+Hora Montagem Término
+Nome do Evento
+Local
+Público Estimado
+Descrição
+Entidade Promotora
+Coordenador Nome
+Coordenador Email
+Coordenador Telefone
+Contato Nome
+Contato Email
+Contato Telefone
+Haverão Expositores?
+Evento Possui Patrocínio?
+Evento Possui Inscrição Paga?
+Serviços Multimídia
+Prestadores de Serviço
+Observações
+Declaração de Responsabilidade
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+INSTRUÇÕES PARA COLAR NA PLANILHA:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+
+OPÇÃO 1: COLAR TUDO DE UMA VEZ (RECOMENDADO)
+1. Copie TODOS os nomes acima (de "Timestamp" até "Declaração de Responsabilidade")
+2. Vá para a planilha do Google Sheets
+3. Clique na célula A1
+4. Cole (Ctrl+V)
+5. Os nomes vão aparecer cada um em uma célula diferente (A1, A2, A3, etc)
+6. Selecione todas as células (A1:A26)
+7. Clique em "Editar" → "Colar especial" → "Transpor"
+   OU
+   Corte (Ctrl+X) e cole na A1, depois use a opção "Transpor" quando colar
+
+OPÇÃO 2: COLAR UM POR UM
+1. Copie cada nome individualmente
+2. Cole na célula correspondente da linha 1:
+   - A1: Timestamp
+   - B1: Email
+   - C1: Data Início
+   - ... e assim por diante até Z1
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+OPÇÃO 3: USAR A FUNÇÃO AUTOMÁTICA DO SCRIPT (MAIS FÁCIL!)
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+
+1. Cole o script SCRIPT-GOOGLE-SHEETS-ATUALIZADO.js no Google Apps Script
+2. Execute a função "criarCabecalhos"
+3. Os cabeçalhos serão criados AUTOMATICAMENTE!
+   - Já formatados em negrito
+   - Com cor de fundo azul
+   - Com a primeira linha congelada
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+VERIFICAÇÃO:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+
+Depois de criar os cabeçalhos:
+
+1. Execute a função "verificarPlanilha" no Apps Script
+2. Ela vai verificar se todos os 26 cabeçalhos estão corretos
+3. Se aparecer "✅ TODOS OS 26 CABEÇALHOS ESTÃO CORRETOS!", está pronto!
+4. Se aparecer erros, corrija os cabeçalhos indicados
+
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+TOTAL DE COLUNAS: 26 (de A até Z)
+═══════════════════════════════════════════════════════════════════════════════════════════════════
